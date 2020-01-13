@@ -1,0 +1,21 @@
+{
+  "name": "vqcoffeeapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "quyen le",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "firebase-admin": "^8.7.0",
+    "jsonwebtoken": "^8.5.1",
+    "validator": "^12.0.0"
+  }
+}
