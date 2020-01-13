@@ -46,5 +46,6 @@ export default {
 }
 .function-name{
   color: #374355;
+  font-size: 12px;
 }
 </style>

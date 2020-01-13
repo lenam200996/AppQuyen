@@ -1,28 +1,44 @@
 <template>
-  <View class="shop-item"
+<!-- <TouchableOpacity v-bind:onPress="toDetail"> -->
+  <TouchableOpacity class="shop-item"
+   v-bind:onPress="toDetail"
   >
-    <image :source="require('../../../assets/images/test.jpg')" class="image-shop"></image>
+    <image v-bind:source="{uri: getValue.anh}" class="image-shop" v-bind:onPress="toDetail"></image>
     <View
       class="content-shop"
     >
-        <Text class="content">Cafe abc</Text>
+        <Text class="content" >{{getValue.ten}}</Text>
     </View>
     <View class="btn-product">
-      <Text class="price">50.000d</Text>
+      <Text class="price">{{getValue.gia}}</Text>
       <Icon name="plus-circle" :size="18" color="#eb6641" />
     </View>
-  </View>
+  </TouchableOpacity>
+  <!-- </TouchableOpacity> -->
 </template>
 <script>
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { TouchableOpacity  } from 'react-native';
+
 export default {
   components: {
-    Icon,
+    Icon,TouchableOpacity
   },
   props: {
     value: {
       type: Object,
     },
+    navigation: {type: Object},
+  },
+  computed: {
+    getValue(){
+      return this.$props.value.item
+    }
+  },
+  methods: {
+    toDetail(){
+      this.navigation.navigate('Detail',{value : this.getValue})
+    }
   },
 };
 </script>
@@ -49,7 +65,7 @@ export default {
 }
 .content{
     color: #374355;
-    font-size: 14px;
+    font-size: 12px;
 
 }
 .btn-product{

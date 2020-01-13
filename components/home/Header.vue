@@ -1,25 +1,53 @@
 <template>
   <view class="header-home">
     <view class="avatar">
-      <image :source="require('../../assets/images/test.jpg')" class="image-avatar">
+      <image :source="require('../../assets/logo.png')" class="image-avatar" />
     </view>
-    <view class="user-name">
+    <view class="user-name" v-if="token != '' && token != null">
       <text class="name">
-        Quyen Le
+        {{fullname}}
         <text class="count-star">| 0</text>
       </text>
     </view>
-    <view class="notification">
-      <Icon name="bell-o" :size="18" color="#eb6641" />
+    <view class="user-name" v-else>
+      <text class="name">
+        Vui lòng đăng nhập
+      </text>
     </view>
+    <TouchableOpacity class="notification" v-if="token != '' && token != null" v-bind:onPress="naviToCart">
+    <!-- <TouchableOpacity class="notification"  v-bind:onPress="naviToCart"> -->
+
+      <Icon name="opencart" :size="18" color="#eb6641" />
+    </TouchableOpacity>
   </view>
 </template>
 <script>
 // import {Icon} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import store from '../../store/index';
+import { TouchableOpacity  } from 'react-native';
+
 export default {
+   props: {
+    navigation: {type: Object},
+  },
   components: {
-    Icon,
+    Icon,TouchableOpacity
+  },
+  computed: {
+    fullname() {
+      return store.state.fullname;
+    },
+    token() {
+      return store.state.token;
+    },
+  },
+  methods: {
+    naviToCart(){
+      // this.navigation.navigate('Cart')
+      // console.log(this.navigation)
+      this.navigation.navigate('Cart')
+    }
   },
 };
 </script>
@@ -53,6 +81,8 @@ export default {
 }
 .name {
   color: #b3b0b0;
+  font-size: 12px;
+  margin-left: 5px;
 }
 .count-star {
   color: #000;

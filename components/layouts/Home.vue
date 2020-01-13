@@ -1,13 +1,16 @@
 <template>
 <view class="container">
-  <header></header>
-  <body></body>
+  <header :navigation="navigation"></header>
+  <body :navigation="navigation"></body>
 </view>
 </template>
 <script>
 import Header from '../home/Header.vue';
 import Body from '../home/Body.vue';
 export default {
+  props: {
+    navigation: {type: Object},
+  },
   components: {
     Header,
     Body,

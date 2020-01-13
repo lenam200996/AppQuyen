@@ -2,21 +2,37 @@
   <View class="news-item"
     v-shadow="2"
   >
-    <image :source="require('../../../assets/images/test.jpg')" class="image-news"></image>
+    <image :source="{uri: getValue.anh}" class="image-news"></image>
     <View
       class="content-news"
     >
-        <Text class="content">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</Text>
+        <Text class="content">{{getValue.noidung}}</Text>
     </View>
-    <Text class="btn-details-news">Chi tiet</Text>
+    <Text class="btn-details-news" v-bind:onPress="chitiet">Chi tiet</Text>
   </View>
 </template>
 <script>
+import { Alert } from 'react-native';
+import store from '../../../store/index'
+
 export default {
   props: {
     value: {
       type: Object,
     },
+  },
+  methods: {
+    chitiet(){
+      console.log(store.state.tintuc)
+    }
+  },
+  computed: {
+    getValue(){
+      return this.value.item
+    }
+  },
+  mounted() {
+    console.log(this.getValue)
   },
 };
 </script>
@@ -33,16 +49,16 @@ export default {
 }
 .image-news {
     width: 100%;
-    height: 80px;
+    height: 100px;
 }
 .content-news {
     width: 100%;
-    height: 100px;
+    height: 60px;
     padding: 5px;
 }
 .content{
     color: #374355;
-    font-size: 14px;
+    font-size: 12px;
 
 }
 .btn-details-news{

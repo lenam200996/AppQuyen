@@ -1,20 +1,23 @@
 <template>
-  <View class="shop-item"
+  <TouchableOpacity class="shop-item"
+  v-bind:onPress="toDetail"
   >
-    <image :source="require('../../../assets/images/test.jpg')" class="image-shop"></image>
+    <image v-bind:source="{uri: getValue.anh}" class="image-shop"></image>
     <View
       class="content-shop"
     >
-        <Text class="content">Cafe aabc</Text>
+        <Text class="content">{{getValue.ten}}</Text>
     </View>
     <View class="btn-product">
-      <Text class="price">55.000d</Text>
+      <Text class="price">{{getValue.gia}}</Text>
       <Icon name="plus-circle" :size="18" color="#eb6641" />
     </View>
-  </View>
+  </TouchableOpacity>
 </template>
 <script>
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { Alert, TouchableOpacity } from 'react-native';
+
 export default {
   components: {
     Icon,
@@ -22,7 +25,21 @@ export default {
   props: {
     value: {
       type: Object,
+      
     },
+    navigation: {type: Object},
+  },
+  mounted() {
+  },
+  computed: {
+    getValue(){
+      return this.$props.value.item
+    }
+  },
+  methods: {
+    toDetail(){
+      this.navigation.navigate('Detail',{value : this.getValue})
+    }
   },
 };
 </script>

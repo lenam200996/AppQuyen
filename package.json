@@ -9,19 +9,25 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^10.0.5",
+    "base-64": "^0.1.0",
     "expo-asset": "^6.0.0",
     "expo-constants": "^6.0.0",
     "expo-font": "^6.0.1",
+    "nativescript-toast": "^2.0.0",
     "react": "16.8.6",
     "react-native": "0.60.5",
     "react-native-elements": "^1.2.0",
     "react-native-gesture-handler": "^1.4.1",
+    "react-native-link": "^4.1.0",
+    "react-native-maps": "^0.26.1",
     "react-native-paper": "^2.16.0",
     "react-native-reanimated": "^1.3.0",
     "react-native-vector-icons": "^6.6.0",
     "vue-native-core": "^0.1.3",
     "vue-native-helper": "^0.1.3",
-    "vue-native-router": "^0.1.1"
+    "vue-native-notification": "^1.0.5",
+    "vue-native-router": "^0.1.1",
+    "vuex": "^3.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",

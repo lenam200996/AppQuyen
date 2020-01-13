@@ -3,7 +3,7 @@
     <flat-list
       :showsHorizontalScrollIndicator="false"
       :numColumns="2"
-      :data="[{key: 'a'}, {key: 'b'},{key: 'a'}, {key: 'b'},{key: 'a'}, {key: 'b'},{key: 'a'}, {key: 'b'}]"
+      :data="sanpham"
       :render-item="(item) => (renderItem(item))"
     />
   </View>
@@ -11,10 +11,25 @@
 <script>
 import Item from './layouts/ShopItem.vue';
 import React from 'react';
+import store from '../../store/index'
+import { Alert } from 'react-native';
+
 export default {
+   props: {
+    navigation: {type: Object},
+  },
+  data() {
+    return {
+      sanpham : []
+    }
+  },
+  created() {
+    
+    setTimeout(()=>{this.sanpham = store.state.sanpham},100)
+  },
   methods:{
     renderItem(item){
-       return <Item value={{title: item.item.key}} />;
+       return <Item navigation={this.navigation} value={item} />;
     }
   }
 }

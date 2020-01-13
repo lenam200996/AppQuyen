@@ -1,11 +1,11 @@
 <template>
   <View class="news-layout">
-    <Text class="title-layouts">Tin tức</Text>
+    <Text class="title-layouts" v-bind:onPress="chitiet">Tin tức</Text>
     <!-- <scroll-view> -->
       <flat-list
         :horizontal="true"
         :showsHorizontalScrollIndicator="false"
-        :data="[{key: 'a'}, {key: 'b'},{key: 'a'}, {key: 'b'},{key: 'a'}, {key: 'b'},{key: 'a'}, {key: 'b'}]"
+        :data="news"
         :render-item="(item) => (renderItem(item))"
       />
     <!-- </scroll-view> -->
@@ -14,15 +14,44 @@
 <script>
 import React from 'react';
 import {Text, View} from 'react-native';
+import store from '../../../store/index'
 import Item from './NewItem.vue';
 export default {
+  data() {
+    return {
+      news :[]
+    }
+  },
   components: {
     Item,
   },
+  beforeCreate() {
+    // await store.dispatch('tintuc')
+    // this.news = store.state.tintuc
+  },
+  created() {
+// console.log('tt new',store.state.tintuc)
+  },
+  mounted() {
+    // setTimeout(()=>{this.news = store.state.tintuc},300)
+  },
+  computed: {
+    tintuc(){
+      return store.state.tintuc
+    }
+  },
+  watch: {
+    tintuc(val){
+      this.news = store.state.tintuc
+    }
+  },
   methods: {
     renderItem(item) {
-      return <Item value={{title: item.item.key}} />;
+      return <Item value={item} />;
     },
+     chitiet(){
+      
+    }
   },
 };
 </script>
@@ -38,5 +67,7 @@ export default {
 .title-layouts{
     /* width: 100%; */
     color: #374355;
+     font-size: 13px;
+  font-weight: bold;
 }
 </style>
